@@ -4,7 +4,9 @@
 <main class="container">
     <div class="row">
         <div class="col m6">
-            <img src="assets/img/leao.jpg" alt="" class="responsive-img">
+
+            <foto *ngFor="let foto of listaFotos" url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+
         </div>
     </div>
 </main>
