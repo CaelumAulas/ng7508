@@ -4,6 +4,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { AppComponent } from './app.component';
 import { FotoModule } from "./foto/foto.module";
+import { CardModule } from "./card/card.module";
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FotoModule } from "./foto/foto.module";
   imports: [
     BrowserModule,
     HttpClientModule,
-    FotoModule
+    FotoModule,
+    CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
