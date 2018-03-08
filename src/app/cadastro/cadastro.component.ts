@@ -11,9 +11,7 @@ export class CadastroComponent implements OnInit {
 
   foto = new FotoComponent()
   
-  constructor(private conexaoApi: HttpClient) {
-    
-  }
+  constructor(private conexaoApi: HttpClient) {}
 
   ngOnInit() {}
 
@@ -28,6 +26,6 @@ export class CadastroComponent implements OnInit {
       ,this.foto
       
     ) */ 
-    
+  
   }
 }
