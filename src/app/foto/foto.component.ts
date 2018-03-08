@@ -9,6 +9,7 @@ import { Component, Input } from "@angular/core";
 export class FotoComponent {
     @Input() url = ""
     @Input() titulo = ""
+             descricao = ""
 }
 
 //data binding - associação de dados

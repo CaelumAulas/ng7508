@@ -17,7 +17,7 @@
       "test": "test.ts",
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
-      "prefix": "app",
+      "prefix": "",
       "styles": [
         "assets/fonts/material-design-icons.css",
         "../node_modules/materialize-css/dist/css/materialize.min.css",
@@ -62,7 +62,7 @@
     },
     "component": {
       "inlineStyle": true,
-      "inlineTemplate": true,
+      "inlineTemplate": false,
       "spec": false
     },
     "directive": {
