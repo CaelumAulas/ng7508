@@ -25,10 +25,9 @@
         <aside class="col m5">
             <h3>preview</h3>
 
-            <div>{{foto.titulo}}</div>
-            <div>{{foto.url}}</div>
-            <div>{{foto.descricao}}</div>
-
+            <card [titulo]="foto.titulo">
+                <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+            </card>
         </aside>
     </div>
 </main>

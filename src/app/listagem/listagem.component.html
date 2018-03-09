@@ -9,9 +9,10 @@
     </div>
     <div class="row">
         <card class="col m2" *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}">
-
             <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
-
+            <button (click)="deletar(foto)" class="btn-floating waves-effect waves-light red">
+                <i class="material-icons">delete</i>
+            </button>
         </card>
     </div>
 </main>
