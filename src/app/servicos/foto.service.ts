@@ -26,8 +26,11 @@ export class FotoService {
         return this.conexaoApi.delete(url+foto._id)
     }
 
-    atualizar(){}
+    consultar(idFoto): Observable<FotoComponent> {
+        return this.conexaoApi.get<FotoComponent>(url+idFoto)
+    }
 
-    consultar(){}
-   
+    atualizar(foto: FotoComponent): Observable<Object> {
+        return this.conexaoApi.put(url+foto._id,foto,cabecalho)
+    }
 }

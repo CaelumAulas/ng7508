@@ -2,6 +2,11 @@
     <h1 class="center-align">CaelumPic</h1>
 </header>
 <main class="container">
+    <div class="row" *ngIf="mensagem">
+        <div class="col m12">
+            <p class="card green lighten-1">{{mensagem}}</p>
+        </div>
+    </div>
     <div class="row">
         <div class="col m12">
             <a routerLink="/cadastro" class="btn">Nova foto</a>
@@ -9,7 +14,9 @@
     </div>
     <div class="row">
         <card class="col m2" *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}">
-            <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+            <a [routerLink]="['/cadastro', foto._id]">
+                <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+            </a>
             <button (click)="deletar(foto)" class="btn-floating waves-effect waves-light red">
                 <i class="material-icons">delete</i>
             </button>

@@ -10,6 +10,7 @@ import { FotoService } from "../servicos/foto.service";
 export class ListagemComponent implements OnInit {
 
     listaFotos: FotoComponent[]
+    mensagem
 
     constructor(private servico: FotoService) {
         this.servico
@@ -28,18 +29,19 @@ export class ListagemComponent implements OnInit {
         this.servico
             .deletar(foto)
             .subscribe(
-                resposta => {
-
-                    console.log(resposta)
-                    console.log(`${foto.titulo} deletada com sucesso!`)
-
-                    this.listaFotos = this.listaFotos.filter( 
+                () => {
+                   /*  this.listaFotos = this.listaFotos.filter( 
                         function(fotoDaLista){
                             if(fotoDaLista != foto){
                                 return fotoDaLista
                             }
-                        })
+                        }) */
 
+                        this.mensagem = `Foto ${foto.titulo} apagada com sucesso!`
+
+                        this.listaFotos = this.listaFotos.filter( fotosDaLista => fotosDaLista != foto )
+
+                        setTimeout( () => this.mensagem = '', 3000)
                 }
 
                 , erro => console.log(erro)

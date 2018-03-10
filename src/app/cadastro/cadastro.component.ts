@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FotoComponent } from '../foto/foto.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FotoService } from '../servicos/foto.service';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
     selector: 'cadastro',
@@ -11,21 +12,58 @@ import { FotoService } from '../servicos/foto.service';
 export class CadastroComponent implements OnInit {
 
     foto = new FotoComponent()
+    mensagem
 
-    constructor(private servico: FotoService) { }
+    constructor(private servico: FotoService, 
+                private rota: ActivatedRoute,
+                private roteador: Router) {
+    }
 
-    ngOnInit() { }
+    ngOnInit() {
+
+        this.rota.params.subscribe( parametros => {
+            
+            if(parametros.fotoId){
+
+                this.servico.consultar(parametros.fotoId)
+                            .subscribe(fotoApi => {
+                                this.foto = fotoApi
+                            })      
+
+            }
+        })
+
+    }
+
+    mensageria(verbo = 'cadastrada', tempo = 2000){
+        this.mensagem = `Foto ${this.foto.titulo} foi ${verbo} com sucesso`
+
+        setTimeout(()=>{
+            this.roteador.navigate([''])
+        }, tempo)
+    }
 
     salvar() {
 
-        console.log(this.foto)
+        if(this.foto._id){
 
-        this.servico
-            .cadastrar(this.foto)
-            .subscribe(
-                () => this.foto = new FotoComponent()
-                , erro => console.log(erro)
-            )
+            this.servico.atualizar(this.foto)
+                        .subscribe(
+                            () => this.mensageria('alterada')
+                        )
 
+        } 
+        else {
+
+            this.servico
+                .cadastrar(this.foto)
+                .subscribe(
+                    () => {
+                        this.foto = new FotoComponent()
+                        this.mensageria()
+                    }
+                    , erro => console.log(erro)
+                )
+        }
     }
 }

@@ -2,6 +2,14 @@
     <h1 class="center-align">Cadastro de fotos</h1>
 </header>
 <main class="container">
+
+    <div class="row" *ngIf="mensagem">
+        <div class="col s12">
+            <p class="card blue">
+                {{mensagem}}
+            </p>
+        </div>
+    </div>
     <div class="row">
         <form class="col m7" (ngSubmit)="salvar()">
             <div class="input-field col s12">
