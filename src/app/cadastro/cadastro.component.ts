@@ -49,7 +49,9 @@ export class CadastroComponent implements OnInit {
 
             this.servico.atualizar(this.foto)
                         .subscribe(
-                            () => this.mensageria('alterada')
+                            mensagemServico => {
+                                this.mensagem = mensagemServico.texto
+                            }
                         )
 
         } 
@@ -58,9 +60,9 @@ export class CadastroComponent implements OnInit {
             this.servico
                 .cadastrar(this.foto)
                 .subscribe(
-                    () => {
+                    mensagemServico => {
                         this.foto = new FotoComponent()
-                        this.mensageria()
+                        mensagem => this.mensagem = mensagemServico.mensagem
                     }
                     , erro => console.log(erro)
                 )
