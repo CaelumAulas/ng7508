@@ -9,11 +9,14 @@
     </div>
     <div class="row">
         <div class="col m12">
-            <a routerLink="/cadastro" class="btn">Nova foto</a>
+            <a routerLink="/cadastro" class="btn col m2">Nova foto</a>
+            <form>
+                <input (keyup)="$event" #inputBusca type="search" class="col m10">
+            </form>
         </div>
     </div>
     <div class="row">
-        <card class="col m2" *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}">
+        <card class="col m2" *ngFor="let foto of listaFotos | filtroPorTitulo:inputBusca.value" titulo="{{foto.titulo}}">
             <a [routerLink]="['/cadastro', foto._id]">
                 <foto url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
             </a>
