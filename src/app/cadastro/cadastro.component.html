@@ -11,14 +11,14 @@
         </div>
     </div>
     <div class="row">
-        <form class="col m7" (ngSubmit)="salvar()">
+        <form #formCadastro="ngForm" class="col m7" (ngSubmit)="salvar()">
             <div class="input-field col s12">
-                <input [(ngModel)]="foto.titulo" name="titulo" id="titulo" type="text" class="validate">
+                <input #titulo="ngModel" required [(ngModel)]="foto.titulo" name="titulo" id="titulo" type="text" class="validate">
                 <label for="titulo">Titulo</label>
             </div>
 
             <div class="input-field col s12">
-                <input [(ngModel)]="foto.url" name="url" id="url" type="text" class="validate">
+                <input #url="ngModel" required [(ngModel)]="foto.url" name="url" id="url" type="text" class="validate">
                 <label for="url">Url</label>
             </div>
 
@@ -27,7 +27,7 @@
                 <label for="descricao">Descrição</label>
             </div>
             <a routerLink="" class="btn grey darken-1">Voltar</a>
-            <button class="btn">Salvar</button>
+            <button [disabled]="formCadastro.invalid" class="btn">Salvar</button>
 
         </form>
         <aside class="col m5">
