@@ -11,19 +11,28 @@
         </div>
     </div>
     <div class="row">
-        <form #formCadastro="ngForm" class="col m7" (ngSubmit)="salvar()">
+        <form [formGroup]="formCadastro" class="col m7" (ngSubmit)="salvar()">
             <div class="input-field col s12">
-                <input #titulo="ngModel" required [(ngModel)]="foto.titulo" name="titulo" id="titulo" type="text" class="validate">
+                <input formControlName="titulo" [(ngModel)]="foto.titulo" name="titulo" id="titulo" type="text" class="validate">
                 <label for="titulo">Titulo</label>
+
+                <div *ngIf="formCadastro.controls.titulo.errors">
+                    <p *ngIf="formCadastro.controls.titulo.errors.required">
+                        Titulo é obrigatório
+                    </p>
+                    <p *ngIf="formCadastro.controls.titulo.errors.minlength">
+                        Minimo de 3 caracteres
+                    </p>
+                </div>
             </div>
 
             <div class="input-field col s12">
-                <input #url="ngModel" required [(ngModel)]="foto.url" name="url" id="url" type="text" class="validate">
+                <input formControlName="url" [(ngModel)]="foto.url" name="url" id="url" type="text" class="validate">
                 <label for="url">Url</label>
             </div>
 
             <div class="input-field col s12">
-                <textarea [(ngModel)]="foto.descricao" name="descricao" id="descricao" class="materialize-textarea"></textarea>
+                <textarea formControlName="descricao" [(ngModel)]="foto.descricao" name="descricao" id="descricao" class="materialize-textarea"></textarea>
                 <label for="descricao">Descrição</label>
             </div>
             <a routerLink="" class="btn grey darken-1">Voltar</a>

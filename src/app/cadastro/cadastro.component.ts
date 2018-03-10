@@ -3,6 +3,7 @@ import { FotoComponent } from '../foto/foto.component';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { FotoService } from '../servicos/foto.service';
 import { ActivatedRoute, Router } from "@angular/router";
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
     selector: 'cadastro',
@@ -13,10 +14,22 @@ export class CadastroComponent implements OnInit {
 
     foto = new FotoComponent()
     mensagem
+    formCadastro: FormGroup
 
     constructor(private servico: FotoService, 
                 private rota: ActivatedRoute,
-                private roteador: Router) {
+                private roteador: Router,
+                private formBuilder: FormBuilder) {
+
+        this.formCadastro = this.formBuilder.group({
+            titulo: ['', Validators.compose([
+                Validators.required,
+                Validators.minLength(3)
+            ])],
+            url: '',
+            descricao: ''
+        })
+        
     }
 
     ngOnInit() {
@@ -62,7 +75,6 @@ export class CadastroComponent implements OnInit {
                 .subscribe(
                     mensagemServico => {
                         this.foto = new FotoComponent()
-                        mensagem => this.mensagem = mensagemServico.mensagem
                     }
                     , erro => console.log(erro)
                 )
